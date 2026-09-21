@@ -1,0 +1,24 @@
+# 23CSE301 Machine Learning Capstone
+# Python 3.13
+#   python3.13 -m venv .venv
+#   source .venv/bin/activate
+#   pip install -r requirements.txt
+
+# Data handling
+pandas==3.0.6
+numpy==2.5.3
+
+# Modelling
+scikit-learn==1.9.1
+joblib==1.6.0
+
+# Visualisation
+matplotlib==3.11.2
+seaborn==0.13.2
+
+# Notebook environment
+jupyter==1.1.1
+jupyterlab==4.6.3
+ipykernel==7.3.0
+nbformat==5.11.1
+nbconvert==7.17.1

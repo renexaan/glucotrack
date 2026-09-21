@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Trained model artefacts — reproducible by re-running the notebook
+models/*
+!models/.gitkeep
+
+# OS
+.DS_Store
