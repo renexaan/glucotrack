@@ -11,7 +11,7 @@ Built for 23CSE301 Machine Learning, B.Tech CSE Year III, Academic Year 2026–2
 
 Three results are worth reading before anything else.
 
-**1 · The best classifier's headline score is an artefact of the data, not a triumph of modelling.**
+**1 · The top classifiers' headline scores are an artefact of the data, not a triumph of modelling.**
 
 The Decision Tree achieved **precision of exactly 1.0000** — zero false positives across
 18,298 non-diabetic test records. That looked too good, so we checked. Probing the raw
@@ -26,7 +26,9 @@ file directly:
 
 Those are hard ceilings, not tendencies. The labels were assigned by rule above those
 cut-offs. Any model able to express an axis-aligned threshold gets perfect precision for
-free — which is also why the tree beat the linear and distance-based models. The genuine
+free — which is also why tree-based models beat the linear and distance-based ones. All ten
+algorithms were then compared: the six best, from a single tree to a neural network, span
+just 0.0011 in weighted F1 — five very different model families hit the same ceiling. The genuine
 difficulty lives in the **86,042 patients below both thresholds, of whom 2.79% are still
 diabetic**, and that is where every model's false negatives come from.
 
@@ -51,13 +53,13 @@ follow-up test — the ranking metric and the clinically useful metric disagree.
 
 | Track | Dataset | Target | Status | Review |
 |---|---|---|---|---|
-| **Classification** | Diabetes Clinical (100,000 × 16) | `diabetes` (binary) | Part A complete | Part A → R1, Part B → R2 |
+| **Classification** | Diabetes Clinical (100,000 × 16) | `diabetes` (binary) | Parts A and B complete (10 algorithms) | Part A → R1, Part B → R2 |
 | **Regression** | Diabetes Prediction | `blood_glucose_level` | 10 algorithms complete | Review 1 |
-| **Clustering** | TBC | unsupervised | Not started | Review 2 |
+| **Clustering** | Diabetes Prediction (100,000 × 9) | unsupervised | K-Means + Agglomerative complete | Review 2 |
 
 ---
 
-## Classification results — Part A
+## Classification results — Part A (five classical models)
 
 Five algorithms, 80/20 stratified split, `random_state=42`, all scored on the same
 held-out test set of 19,998 records (1,700 diabetic).
@@ -98,6 +100,64 @@ held-out test set of 19,998 records (1,700 diabetic).
 |---|---|---|---|
 | Decision Tree | 0.9692 ± 0.0009 | 0.9696 | +0.0004 |
 | Support Vector Machine | 0.9575 ± 0.0031 | 0.9585 | +0.0010 |
+
+---
+
+## Classification results — Part B and the full ten-algorithm comparison
+
+Part B adds Random Forest, AdaBoost, Gradient Boosting, Bagging (Decision Tree base) and
+an MLP on the same data, split and preprocessing. Each was fitted with library defaults,
+then tuned with `GridSearchCV` (3-fold, scored on diabetic-class F1).
+
+| Rank | Model | Part | Accuracy | F1 (weighted) | ROC-AUC | Recall (diabetic) | Precision (diabetic) |
+|---|---|---|---|---|---|---|---|
+| 1 | **Gradient Boosting** | B | 0.9721 | **0.9698** | **0.9772** | 0.6859 | 0.9798 |
+| 2 | Random Forest | B | 0.9721 | 0.9697 | 0.9709 | 0.6759 | 0.9948 |
+| 3 | MLP Neural Network | B | 0.9721 | 0.9696 | 0.9751 | 0.6753 | 0.9948 |
+| 4 | AdaBoost | B | 0.9721 | 0.9696 | 0.9716 | 0.6724 | 0.9991 |
+| 5 | Decision Tree | A | 0.9721 | 0.9696 | 0.9721 | 0.6718 | 1.0000 |
+| 6 | Bagging | B | 0.9709 | 0.9687 | 0.9597 | 0.6853 | 0.9620 |
+| 7 | Support Vector Machine | A | 0.9618 | 0.9585 | 0.9548 | 0.6188 | 0.9007 |
+| 8 | Logistic Regression | A | 0.9612 | 0.9585 | 0.9579 | 0.6394 | 0.8696 |
+| 9 | K-Nearest Neighbors | A | 0.9535 | 0.9499 | 0.8564 | 0.5829 | 0.8177 |
+| 10 | Gaussian Naive Bayes | A | 0.6750 | 0.7467 | 0.9121 | **0.9594** | 0.2023 |
+
+**Final model: Gradient Boosting** (`learning_rate=0.05`, `n_estimators=200`, `max_depth=5`).
+It ranks first on weighted F1, diabetic F1 and ROC-AUC, and its 5-fold cross-validated
+ROC-AUC is 0.9788 ± 0.0011 (Random Forest: 0.9721). The F1 margin over Random Forest is
+inside one cross-validation standard deviation, so the decisive evidence is ranking
+quality and recall, not a large performance gap.
+
+**Tuning bought very little.** Diabetic-F1 changes from tuning: Bagging +0.0059, MLP
++0.0013, Random Forest +0.0005, AdaBoost +0.0001, Gradient Boosting −0.0010. Models are
+already at the information ceiling of the data, so the search space barely matters.
+
+---
+
+## Clustering results
+
+K-Means and Agglomerative clustering on the Diabetes Prediction dataset (label excluded
+from every fitting step; used only for post-hoc interpretation). K-Means: k = 4, chosen
+from the elbow curve together with silhouette, Davies-Bouldin and Calinski-Harabasz
+across k = 2–10.
+
+| Algorithm | Rows | Silhouette ↑ | Davies-Bouldin ↓ | Calinski-Harabasz ↑ |
+|---|---|---|---|---|
+| K-Means (k=4) | 100,000 | 0.1842 | 1.5096 | 21,981 |
+| K-Means (k=4), same subset | 2,000 | 0.1855 | 1.5152 | 452.6 |
+| Agglomerative, Ward | 2,000 | 0.1593 | 1.6650 | 410.2 |
+| Agglomerative, Complete | 2,000 | 0.3036 | 1.3300 | 201.3 |
+| Agglomerative, Average | 2,000 | 0.3994 | 0.9886 | 298.8 |
+| Agglomerative, Single | 2,000 | 0.4071 | 1.1163 | 297.6 |
+
+Complete, Average and Single linkage put 88–89% of records in one giant cluster
+(chaining), so their higher silhouette is an artefact of a few tiny outlier groups. On the
+same 2,000 rows, K-Means beats Ward on all three metrics.
+
+The four K-Means clusters are patient segments — young low-risk, middle-aged,
+hypertensive, cardiac — and the diabetic share rises from 0.5% to 32.1% across them
+although the label was never used. Cluster structure is weak overall (silhouette < 0.25
+for balanced solutions): the features are mostly continuous with no natural gaps.
 
 ---
 
@@ -198,8 +258,9 @@ glucotrack/
 │   ├── diabetes_prediction_dataset.csv   regression
 │   └── README.md                         column reference
 ├── notebooks/
-│   ├── classification.ipynb              89 cells · 9 figures · runs in ~27 s
-│   └── regression.ipynb                  63 cells · 10 algorithms
+│   ├── classification.ipynb              10 algorithms (Parts A and B) · runs in ~4 min
+│   ├── clustering.ipynb                  K-Means + Agglomerative · PCA and t-SNE
+│   └── regression.ipynb                  10 algorithms
 ├── models/                               serialised estimators (git-ignored)
 ├── requirements.txt                      pinned versions
 └── README.md
@@ -227,8 +288,8 @@ pip install -r requirements.txt
 jupyter lab notebooks/classification.ipynb
 ```
 
-Then **Kernel → Restart Kernel and Run All Cells**. The classification notebook runs top
-to bottom in about 27 seconds with no manual intervention.
+Then **Kernel → Restart Kernel and Run All Cells**. Every notebook runs top to bottom
+with no manual intervention (classification takes about 4 minutes, the others about one).
 
 To verify it end to end without opening Jupyter:
 
@@ -259,6 +320,12 @@ Stated plainly, because they matter more than the headline numbers.
   100,000 rows exceeds glucose 200 or HbA1c 6.6. Each glycaemic marker takes only 18
   distinct values, and 25,495 records share a BMI of exactly 27.32. Treat 0.97 weighted F1
   as a property of this dataset, not an estimate of clinical performance.
+- **Clustering structure is weak.** Silhouette is below 0.25 for every balanced solution,
+  and the hierarchical analysis uses a 2,000-row subset (500 rows for the dendrogram)
+  because linkage is quadratic in memory. K-Means is therefore compared with Ward on the
+  same subset for fairness.
+- **Part B tuning grids were small** (9–12 configurations) and the gains negligible, so a
+  larger search is unlikely to change the ranking.
 - **KNN and SVC were tuned and refit on stratified subsamples** (12k/40k and 6k/20k
   respectively), because kernel-SVM training scales between O(n²) and O(n³). Their scores
   are conservative lower bounds and the comparison is not strictly like-for-like.
@@ -278,10 +345,9 @@ Stated plainly, because they matter more than the headline numbers.
 
 1. Tune the decision threshold against a stated cost ratio between a missed diagnosis and
    a false alarm, chosen on a validation split — never the test set.
-2. Apply `class_weight="balanced"` to Logistic Regression, the Decision Tree and SVC.
-3. Train the Part B ensembles: Random Forest, AdaBoost, Gradient Boosting, Bagging, MLP.
-4. Re-run KNN and SVC on the full training split to quantify the subsampling cost.
-5. Build a leakage-free early-warning variant excluding both glycaemic markers, removing
+2. Apply `class_weight="balanced"` to the models that support it.
+3. Re-run KNN and SVC on the full training split to quantify the subsampling cost.
+4. Build a leakage-free early-warning variant excluding both glycaemic markers, removing
    the intrinsic leakage and the synthetic labelling rule together. Expect much worse
    metrics — and a far more honest model.
 
