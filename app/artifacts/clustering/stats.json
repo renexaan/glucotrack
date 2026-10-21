@@ -1,0 +1,76 @@
+{
+ "dataset": "Diabetes Prediction Dataset (data/diabetes_prediction_dataset.csv)",
+ "rows": 100000,
+ "columns": 9,
+ "duplicates_kept": 3854,
+ "k": 4,
+ "hier_rows": 2000,
+ "dendrogram_rows": 500,
+ "tsne_rows": 2000,
+ "pca_rows": 5000,
+ "pca_explained_variance": [
+  0.24361902475357056,
+  0.14818936586380005
+ ],
+ "kmeans_posthoc": {
+  "ARI": 0.04329137362855123,
+  "NMI": 0.0708522804283784
+ },
+ "numeric_features": [
+  "age",
+  "hypertension",
+  "heart_disease",
+  "bmi",
+  "HbA1c_level",
+  "blood_glucose_level"
+ ],
+ "categorical_features": [
+  "gender",
+  "smoking_history"
+ ],
+ "ranges": {
+  "age": {
+   "min": 0.08,
+   "max": 80.0,
+   "mean": 41.885856,
+   "median": 43.0
+  },
+  "bmi": {
+   "min": 10.01,
+   "max": 95.69,
+   "mean": 27.3207671,
+   "median": 27.32
+  },
+  "HbA1c_level": {
+   "min": 3.5,
+   "max": 9.0,
+   "mean": 5.527507,
+   "median": 5.8
+  },
+  "blood_glucose_level": {
+   "min": 80.0,
+   "max": 300.0,
+   "mean": 138.05806,
+   "median": 140.0
+  }
+ },
+ "binary_rates": {
+  "hypertension": 0.07485,
+  "heart_disease": 0.03942
+ },
+ "categories": {
+  "gender": [
+   "Female",
+   "Male",
+   "Other"
+  ],
+  "smoking_history": [
+   "No Info",
+   "current",
+   "ever",
+   "former",
+   "never",
+   "not current"
+  ]
+ }
+}

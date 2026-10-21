@@ -1,0 +1,48 @@
+{
+ "Logistic Regression": {
+  "solver": "lbfgs",
+  "C": "1.0",
+  "max_iter": "2000"
+ },
+ "K-Nearest Neighbors": {
+  "n_neighbors": "3",
+  "p": "2",
+  "weights": "uniform"
+ },
+ "Gaussian Naive Bayes": {
+  "var_smoothing": "1e-09"
+ },
+ "Decision Tree": {
+  "criterion": "entropy",
+  "max_depth": "8",
+  "min_samples_leaf": "5"
+ },
+ "Support Vector Machine": {
+  "C": "10.0",
+  "kernel": "linear"
+ },
+ "Random Forest": {
+  "max_depth": "None",
+  "min_samples_leaf": "5",
+  "n_estimators": "100"
+ },
+ "AdaBoost": {
+  "learning_rate": "1.0",
+  "n_estimators": "100"
+ },
+ "Gradient Boosting": {
+  "learning_rate": "0.05",
+  "max_depth": "5",
+  "n_estimators": "200"
+ },
+ "Bagging": {
+  "estimator__max_depth": "None",
+  "max_samples": "0.5",
+  "n_estimators": "30"
+ },
+ "MLP Neural Network": {
+  "activation": "tanh",
+  "alpha": "0.0001",
+  "hidden_layer_sizes": "(64, 32)"
+ }
+}

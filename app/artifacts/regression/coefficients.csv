@@ -1,0 +1,17 @@
+feature,coefficient
+age,-0.2466163199159701
+hypertension,0.041728043775798876
+heart_disease,-0.271274168945064
+bmi,-0.21362781975780587
+HbA1c_level,-0.018313571205170683
+diabetes,17.326391087542497
+age_bmi_interaction,0.465071360953773
+gender_Female,-0.051788896342372236
+gender_Male,0.0
+gender_Other,0.0
+smoking_history_No Info,-0.0
+smoking_history_current,0.4413197683194301
+smoking_history_ever,-0.35974772166227126
+smoking_history_former,0.0
+smoking_history_never,0.09170575518538739
+smoking_history_not current,-0.0

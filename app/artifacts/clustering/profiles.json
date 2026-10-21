@@ -1,0 +1,357 @@
+{
+ "kmeans": {
+  "n": 100000,
+  "overall_mean": {
+   "age": 41.885856,
+   "hypertension": 0.07485,
+   "heart_disease": 0.03942,
+   "bmi": 27.3207671,
+   "HbA1c_level": 5.527507,
+   "blood_glucose_level": 138.05806
+  },
+  "overall_std": {
+   "age": 22.51683987161702,
+   "hypertension": 0.26315047022891647,
+   "heart_disease": 0.1945930169980995,
+   "bmi": 6.636783416648368,
+   "HbA1c_level": 1.0706720918835437,
+   "blood_glucose_level": 40.70813604870415
+  },
+  "overall_cat": {
+   "gender": {
+    "Female": 0.58552,
+    "Male": 0.4143,
+    "Other": 0.00018
+   },
+   "smoking_history": {
+    "No Info": 0.35816,
+    "never": 0.35095,
+    "former": 0.09352,
+    "current": 0.09286,
+    "not current": 0.06447,
+    "ever": 0.04004
+   }
+  },
+  "overall_diabetic_share": 0.085,
+  "clusters": {
+   "0": {
+    "size": 50916,
+    "share": 0.50916,
+    "mean": {
+     "age": 54.092898106685524,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 29.92957086181161,
+     "HbA1c_level": 5.638261057427919,
+     "blood_glucose_level": 141.88693141645064
+    },
+    "std": {
+     "age": 15.13891068579692,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 6.21424024820291,
+     "HbA1c_level": 1.0523391697800928,
+     "blood_glucose_level": 41.49393684547132
+    },
+    "cat": {
+     "gender": {
+      "Female": 0.6054874695577028,
+      "Male": 0.39435540890879095,
+      "Other": 0.000157121533506167
+     },
+     "smoking_history": {
+      "never": 0.381667845078168,
+      "No Info": 0.2614109513708854,
+      "former": 0.12447953492026083,
+      "current": 0.10680336240081703,
+      "not current": 0.0772841542933459,
+      "ever": 0.0483541519365229
+     }
+    },
+    "diabetic_share": 0.10464294131510724
+   },
+   "1": {
+    "size": 38573,
+    "share": 0.38573,
+    "mean": {
+     "age": 19.912985767246514,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 23.06618619241438,
+     "HbA1c_level": 5.297474917688539,
+     "blood_glucose_level": 129.6196562362274
+    },
+    "std": {
+     "age": 12.541103221617904,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 4.665796627357628,
+     "HbA1c_level": 1.003462248368016,
+     "blood_glucose_level": 34.40023855057482
+    },
+    "cat": {
+     "gender": {
+      "Female": 0.5796023124983797,
+      "Male": 0.420138438804345,
+      "Other": 0.0002592486972752962
+     },
+     "smoking_history": {
+      "No Info": 0.5321598008970005,
+      "never": 0.30254322972027065,
+      "current": 0.07023047209187774,
+      "not current": 0.04624996759391284,
+      "former": 0.025587846421071734,
+      "ever": 0.023228683275866538
+     }
+    },
+    "diabetic_share": 0.0045368522023176835
+   },
+   "2": {
+    "size": 6569,
+    "share": 0.06569,
+    "mean": {
+     "age": 60.72887806363221,
+     "hypertension": 1.0,
+     "heart_disease": 0.0,
+     "bmi": 30.87970315116456,
+     "HbA1c_level": 5.805434617141117,
+     "blood_glucose_level": 149.48165626427158
+    },
+    "std": {
+     "age": 13.866029278067117,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 6.9421154717472975,
+     "HbA1c_level": 1.2113322499453327,
+     "blood_glucose_level": 49.908713927329366
+    },
+    "cat": {
+     "gender": {
+      "Female": 0.579083574364439,
+      "Male": 0.420916425635561
+     },
+     "smoking_history": {
+      "never": 0.44070634799817326,
+      "former": 0.1703455624904856,
+      "No Info": 0.16075506165321968,
+      "current": 0.1111280255746689,
+      "not current": 0.06637235500076115,
+      "ever": 0.050692647282691426
+     }
+    },
+    "diabetic_share": 0.26335819759476325
+   },
+   "3": {
+    "size": 3942,
+    "share": 0.03942,
+    "mean": {
+     "age": 67.8234398782344,
+     "hypertension": 0.23236935565702688,
+     "heart_disease": 1.0,
+     "bmi": 29.325700152207002,
+     "HbA1c_level": 5.884728564180619,
+     "blood_glucose_level": 152.1377473363775
+    },
+    "std": {
+     "age": 11.343152936341687,
+     "hypertension": 0.422396850448432,
+     "heart_disease": 0.0,
+     "bmi": 5.926849700998312,
+     "HbA1c_level": 1.2436614892785978,
+     "blood_glucose_level": 52.62399647135506
+    },
+    "cat": {
+     "gender": {
+      "Male": 0.6037544393708777,
+      "Female": 0.39624556062912225
+     },
+     "smoking_history": {
+      "never": 0.278285134449518,
+      "No Info": 0.2341451040081177,
+      "former": 0.23033992897006594,
+      "current": 0.10375443937087772,
+      "ever": 0.07940131912734652,
+      "not current": 0.07407407407407407
+     }
+    },
+    "diabetic_share": 0.32141045154743786
+   }
+  }
+ },
+ "ward": {
+  "n": 2000,
+  "overall_mean": {
+   "age": 41.83236,
+   "hypertension": 0.084,
+   "heart_disease": 0.0385,
+   "bmi": 27.250344999999996,
+   "HbA1c_level": 5.5779499999999995,
+   "blood_glucose_level": 137.909
+  },
+  "overall_std": {
+   "age": 22.594240387314194,
+   "hypertension": 0.27745718813111114,
+   "heart_disease": 0.19244809205099186,
+   "bmi": 6.667647883258575,
+   "HbA1c_level": 1.0633974819428063,
+   "blood_glucose_level": 42.31587214648611
+  },
+  "overall_cat": {
+   "gender": {
+    "Female": 0.5975,
+    "Male": 0.4025
+   },
+   "smoking_history": {
+    "No Info": 0.379,
+    "never": 0.332,
+    "former": 0.0965,
+    "current": 0.089,
+    "not current": 0.0625,
+    "ever": 0.041
+   }
+  },
+  "overall_diabetic_share": 0.089,
+  "clusters": {
+   "0": {
+    "size": 930,
+    "share": 0.465,
+    "mean": {
+     "age": 27.08249462365591,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 24.010870967741933,
+     "HbA1c_level": 5.131182795698925,
+     "blood_glucose_level": 131.4258064516129
+    },
+    "std": {
+     "age": 19.638508528812636,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 4.66754968003829,
+     "HbA1c_level": 0.9911533869777531,
+     "blood_glucose_level": 36.65219798984391
+    },
+    "cat": {
+     "gender": {
+      "Female": 0.5612903225806452,
+      "Male": 0.43870967741935485
+     },
+     "smoking_history": {
+      "No Info": 0.5591397849462365,
+      "never": 0.2838709677419355,
+      "current": 0.06236559139784946,
+      "former": 0.03763440860215054,
+      "not current": 0.03333333333333333,
+      "ever": 0.023655913978494623
+     }
+    },
+    "diabetic_share": 0.004301075268817204
+   },
+   "1": {
+    "size": 844,
+    "share": 0.422,
+    "mean": {
+     "age": 52.329383886255926,
+     "hypertension": 0.001184834123222749,
+     "heart_disease": 0.0,
+     "bmi": 29.936563981042653,
+     "HbA1c_level": 6.003791469194312,
+     "blood_glucose_level": 141.15758293838863
+    },
+    "std": {
+     "age": 16.153490905121764,
+     "hypertension": 0.0344214195410757,
+     "heart_disease": 0.0,
+     "bmi": 7.0168919416936815,
+     "HbA1c_level": 0.8754513272886487,
+     "blood_glucose_level": 43.79132065255503
+    },
+    "cat": {
+     "gender": {
+      "Female": 0.6563981042654028,
+      "Male": 0.34360189573459715
+     },
+     "smoking_history": {
+      "never": 0.3791469194312796,
+      "No Info": 0.24052132701421802,
+      "former": 0.13151658767772512,
+      "current": 0.11255924170616113,
+      "not current": 0.08175355450236967,
+      "ever": 0.054502369668246446
+     }
+    },
+    "diabetic_share": 0.12677725118483413
+   },
+   "2": {
+    "size": 149,
+    "share": 0.0745,
+    "mean": {
+     "age": 61.76510067114094,
+     "hypertension": 1.0,
+     "heart_disease": 0.0,
+     "bmi": 30.458590604026845,
+     "HbA1c_level": 5.77986577181208,
+     "blood_glucose_level": 150.91275167785236
+    },
+    "std": {
+     "age": 14.381571006610343,
+     "hypertension": 0.0,
+     "heart_disease": 0.0,
+     "bmi": 6.3757908910713095,
+     "HbA1c_level": 1.2499178278813574,
+     "blood_glucose_level": 51.52248694133807
+    },
+    "cat": {
+     "gender": {
+      "Female": 0.5906040268456376,
+      "Male": 0.40939597315436244
+     },
+     "smoking_history": {
+      "never": 0.40268456375838924,
+      "former": 0.20134228187919462,
+      "No Info": 0.1610738255033557,
+      "current": 0.10067114093959731,
+      "not current": 0.09395973154362416,
+      "ever": 0.040268456375838924
+     }
+    },
+    "diabetic_share": 0.2483221476510067
+   },
+   "3": {
+    "size": 77,
+    "share": 0.0385,
+    "mean": {
+     "age": 66.35064935064935,
+     "hypertension": 0.23376623376623376,
+     "heart_disease": 1.0,
+     "bmi": 30.724545454545453,
+     "HbA1c_level": 5.9155844155844175,
+     "blood_glucose_level": 155.44155844155844
+    },
+    "std": {
+     "age": 11.923844127768607,
+     "hypertension": 0.42600049098389975,
+     "heart_disease": 0.0,
+     "bmi": 6.065154257910413,
+     "HbA1c_level": 1.240868216322848,
+     "blood_glucose_level": 54.42655444834121
+    },
+    "cat": {
+     "gender": {
+      "Male": 0.5974025974025974,
+      "Female": 0.4025974025974026
+     },
+     "smoking_history": {
+      "never": 0.2597402597402597,
+      "former": 0.22077922077922077,
+      "not current": 0.14285714285714285,
+      "No Info": 0.14285714285714285,
+      "current": 0.12987012987012986,
+      "ever": 0.1038961038961039
+     }
+    },
+    "diabetic_share": 0.38961038961038963
+   }
+  }
+ }
+}

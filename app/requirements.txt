@@ -1,0 +1,9 @@
+# GlucoTrack web app. Versions match the environment the models were trained in:
+# joblib files must be loaded with the same scikit-learn that wrote them.
+streamlit==1.66.0
+plotly==7.1.0
+scipy==1.18.1
+scikit-learn==1.9.1
+pandas==3.0.6
+numpy==2.5.3
+joblib==1.6.0

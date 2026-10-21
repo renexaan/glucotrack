@@ -1,0 +1,89 @@
+{
+ "dataset": "Diabetes Prediction Dataset (data/diabetes_prediction_dataset.csv)",
+ "rows_after_dedup": 96146,
+ "train_rows": 76916,
+ "test_rows": 19230,
+ "evaluation_split": "20% random hold-out test set (not stratified), random_state=42",
+ "target": "blood_glucose_level",
+ "target_unit": "mg/dL",
+ "target_distinct_values": [
+  80,
+  85,
+  90,
+  100,
+  126,
+  130,
+  140,
+  145,
+  155,
+  158,
+  159,
+  160,
+  200,
+  220,
+  240,
+  260,
+  280,
+  300
+ ],
+ "target_mean": 138.21823060761758,
+ "target_std": 40.909771362746795,
+ "test_target_std": 40.855981703340376,
+ "best_model": "Lasso Regression",
+ "best_metrics": {
+  "R\u00b2 Score": 0.18252784418319645,
+  "RMSE": 36.93863496471581,
+  "MAE": 30.73159027487082
+ },
+ "ablation_r2_linear": {
+  "with_diabetes_label": 0.18248793632879978,
+  "without_diabetes_label": 0.05039454416069011,
+  "without_diabetes_and_hba1c": 0.02749265542329815
+ },
+ "ranges": {
+  "age": {
+   "min": 0.08,
+   "max": 80.0,
+   "mean": 41.79432571297818,
+   "median": 43.0
+  },
+  "bmi": {
+   "min": 10.01,
+   "max": 95.69,
+   "mean": 27.32146111122667,
+   "median": 27.32
+  },
+  "HbA1c_level": {
+   "min": 3.5,
+   "max": 9.0,
+   "mean": 5.532608740873256,
+   "median": 5.8
+  },
+  "blood_glucose_level": {
+   "min": 80.0,
+   "max": 300.0,
+   "mean": 138.21823060761758,
+   "median": 140.0
+  }
+ },
+ "binary_rates": {
+  "hypertension": 0.07760073221974913,
+  "heart_disease": 0.04080252948640609,
+  "diabetes": 0.08821999875189815
+ },
+ "categories": {
+  "gender": [
+   "Female",
+   "Male",
+   "Other"
+  ],
+  "smoking_history": [
+   "No Info",
+   "current",
+   "ever",
+   "former",
+   "never",
+   "not current"
+  ]
+ }
+}
