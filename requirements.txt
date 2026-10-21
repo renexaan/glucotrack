@@ -22,3 +22,8 @@ jupyterlab==4.6.3
 ipykernel==7.3.0
 nbformat==5.11.1
 nbconvert==7.17.1
+
+# Web application (app/)
+streamlit==1.66.0
+plotly==7.1.0
+scipy==1.18.1
