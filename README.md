@@ -150,7 +150,7 @@ across k = 2–10.
 | Agglomerative, Average | 2,000 | 0.3994 | 0.9886 | 298.8 |
 | Agglomerative, Single | 2,000 | 0.4071 | 1.1163 | 297.6 |
 
-Complete, Average and Single linkage put 88–89% of records in one giant cluster
+Complete, Average and Single linkage put 88–90% of records in one giant cluster
 (chaining), so their higher silhouette is an artefact of a few tiny outlier groups. On the
 same 2,000 rows, K-Means beats Ward on all three metrics.
 
@@ -261,6 +261,13 @@ glucotrack/
 │   ├── classification.ipynb              10 algorithms (Parts A and B) · runs in ~4 min
 │   ├── clustering.ipynb                  K-Means + Agglomerative · PCA and t-SNE
 │   └── regression.ipynb                  10 algorithms
+├── app/
+│   ├── streamlit_app.py                  entry point (5 pages)
+│   ├── glucotrack/                       inference pipeline, theme, charts, data loading
+│   ├── views/                            one module per page
+│   ├── artifacts/                        fitted models + result tables exported by the notebooks (< 1 MB)
+│   ├── tests/                            parity and render checks
+│   └── requirements.txt                  slim, pinned dependencies for deployment
 ├── models/                               serialised estimators (git-ignored)
 ├── requirements.txt                      pinned versions
 └── README.md
@@ -300,6 +307,38 @@ python -m nbconvert --to notebook --execute --inplace \
 
 **Python 3.13, not 3.14** — scikit-learn wheel coverage for 3.14 is still incomplete and
 would force a source build.
+
+---
+
+## Web application
+
+An interactive Streamlit app in `app/` demonstrates all three tracks and the model comparison.
+
+| Page | What it does |
+|---|---|
+| **Diabetes Risk** | Patient form → predicted class and probability from the final classifier (Gradient Boosting), with the target-leakage disclosure |
+| **Glucose Estimate** | Regression estimate from the best regressor (Lasso) with its test R², RMSE and MAE |
+| **Patient Segment** | K-Means (and nearest-centroid Ward) cluster assignment, cluster profile, Elbow, dendrogram, PCA and t-SNE |
+| **Model Comparison** | All 10 classifiers, all 10 regressors and both clustering algorithms: tables, confusion matrix, ROC, tuning, cross-validation |
+| **About** | Methodology, limitations, leakage and how to read the results |
+
+The app does not retrain anything. The last section of each notebook exports the exact fitted
+objects and result tables to `app/artifacts/`, and asserts that the app's inference code
+(`app/glucotrack/pipeline.py`) reproduces the notebook's processed test matrix and predictions.
+
+```bash
+pip install -r requirements.txt            # or app/requirements.txt for the app alone
+streamlit run app/streamlit_app.py
+python -m unittest discover -s app/tests   # parity and render checks
+```
+
+**Deploying (Streamlit Community Cloud).** Push the repository to a public GitHub repo, choose
+*New app*, set the main file path to `app/streamlit_app.py`, and select **Python 3.13** under
+advanced settings (the pinned scikit-learn must match the version that wrote the model files).
+
+The app is an educational demonstration and not a medical tool. The classifier's inputs include
+the same glucose and HbA1c values that define the dataset's label, and the regression model uses
+the diabetes label as an input; both are disclosed in the app.
 
 ---
 
